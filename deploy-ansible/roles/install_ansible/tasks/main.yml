@@ -1,0 +1,18 @@
+- name: Install pipx
+  ansible.builtin.apt:
+    name:
+      - pipx
+    update_cache: true
+    install_recommends: false
+
+- name: Setup pipx for `user` user
+  ansible.builtin.lineinfile:
+    path: /home/user/.bashrc
+    line: export PATH="$PATH:/home/user/.local/bin"
+
+- name: Install packages in requirements.txt
+  ansible.builtin.command: >
+    /usr/bin/sudo -u user /usr/bin/bash -c
+    '/usr/bin/pipx install ansible-core &&
+    /usr/bin/cat /home/user/ansible/requirements.txt | /usr/bin/xargs /usr/bin/pipx inject ansible-core'
+  changed_when: true  # :(

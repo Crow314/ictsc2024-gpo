@@ -4,3 +4,4 @@
   roles:
     - package
     - upload_files
+    - install_ansible
