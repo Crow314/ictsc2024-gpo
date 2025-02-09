@@ -1,0 +1,36 @@
+- name: Remove debian.sources
+  ansible.builtin.file:
+    path: /etc/apt/sources.list.d/debian.sources
+    state: absent
+
+- name: Add ubuntu repository
+  ansible.builtin.deb822_repository:
+    name: ubuntu
+    types: deb
+    uris: https://ftp.tsukuba.wide.ad.jp/ubuntu
+    suites:
+      - '{{ ansible_distribution_release }}'
+      - '{{ ansible_distribution_release }}-updates'
+      - '{{ ansible_distribution_release }}-backports'
+    components:
+      - main
+      - universe
+      - restricted
+      - multiverse
+
+- name: Add ubuntu security repository
+  ansible.builtin.deb822_repository:
+    name: ubuntu-security
+    types: deb
+    uris: http://security.ubuntu.com/ubuntu
+    suites: '{{ ansible_distribution_release }}-security'
+    components:
+      - main
+      - universe
+      - restricted
+      - multiverse
+
+- name: Update and upgrade
+  ansible.builtin.apt:
+    update_cache: true
+    upgrade: dist
