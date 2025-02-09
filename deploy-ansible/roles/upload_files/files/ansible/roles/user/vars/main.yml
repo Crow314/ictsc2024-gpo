@@ -1,0 +1,32 @@
+users:
+  - name: x
+    uid: 2000
+    sudoer: true
+    pubkey: id_x.pub
+  - name: y
+    uid: 2001
+    sudoer: false
+    pubkey: id_y.pub
+  - name: z
+    uid: 2002
+    sudoer: false
+    pubkey: id_z.pub
+
+groups:
+  - name: x
+    gid: 2000
+  - name: y
+    gid: 2001
+  - name: z
+    gid: 2002
+
+passwords:
+  - name: x
+    password: 1qaz!QAZ
+    salt: ictsc2024
+  - name: y
+    password: Passw0rd
+    salt: ictsc2024
+  - name: z
+    password: iL0veTr0ub1e
+    salt: ictsc2024

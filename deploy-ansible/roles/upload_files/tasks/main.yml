@@ -1,0 +1,10 @@
+- name: Upload ansible directory
+  ansible.posix.synchronize:
+    src: ansible
+    dest: /home/user/
+    checksum: true
+    times: false
+    delete: true
+    rsync_opts:
+      - --chmod=D755,F644
+      - --chown=user:user
