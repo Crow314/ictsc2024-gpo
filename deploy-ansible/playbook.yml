@@ -5,3 +5,9 @@
     - package
     - upload_files
     - install_ansible
+
+- name: Miscellaneous settings
+  hosts: all
+  become: true
+  roles:
+    - misc
