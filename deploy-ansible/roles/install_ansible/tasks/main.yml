@@ -2,6 +2,7 @@
   ansible.builtin.apt:
     name:
       - pipx
+      - cowsay
     update_cache: true
     install_recommends: false
 
