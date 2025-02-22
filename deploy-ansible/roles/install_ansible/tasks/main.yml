@@ -10,9 +10,11 @@
     path: /home/user/.bashrc
     line: export PATH="$PATH:/home/user/.local/bin"
 
-- name: Install packages in requirements.txt
+- name: Install ansible-core
   ansible.builtin.command: >
-    /usr/bin/sudo -u user /usr/bin/bash -c
-    '/usr/bin/pipx install ansible-core &&
-    /usr/bin/cat /home/user/ansible/requirements.txt | /usr/bin/xargs /usr/bin/pipx inject ansible-core'
-  changed_when: true  # :(
+    /usr/bin/pipx install ansible-core
+  register: result
+  changed_when: "'''ansible-core'' already seems to be installed.' in result.stdout"
+  become: true
+  become_user: user
+  become_flags: "-s"
