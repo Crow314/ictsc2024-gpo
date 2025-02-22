@@ -2,7 +2,6 @@
   hosts: controller
   become: true
   roles:
-    - package
     - upload_files
     - install_ansible
 
